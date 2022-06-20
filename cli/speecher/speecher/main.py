@@ -3,7 +3,7 @@
 # Press Ctrl+F5 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.from vosk import Model, KaldiRecognizer, SetLogLevel
 import argparse
-from progress.bar import FillingSquaresBar
+from progress.bar import Bar
 from vosk import Model, KaldiRecognizer
 
 
@@ -36,7 +36,9 @@ def main(file: str, lang: str):
 
     wf = open(file, "rb")
     iosize = len(wf.read())
-    bar = FillingSquaresBar('Processing', max=iosize)
+    bar = Bar('Analyzing speeche', max=iosize,
+              suffix='%(percent)d%% (%(index)d/%(max)d bytes remaining) - Time elapsed: %(elapsed)ds', fill='@')
+
     bar.max = iosize
 
     wf = open(file, "rb")
