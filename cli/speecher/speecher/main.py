@@ -70,7 +70,7 @@ def main(file: str, lang: str):
         data = wf.read(4000)
         iosize = iosize - 4000
         bar.next(4000)'''
-
+    print('\n')
     print(rec.FinalResult())
 
 
