@@ -1,0 +1,12 @@
+FROM fedora:latest
+
+ARG USER
+
+RUN dnf install git wget unzip cmake gtk3-devel ninja-build clang mesa-dri-drivers -y
+RUN dnf install conda -y
+WORKDIR opt/
+RUN git clone https://github.com/flutter/flutter.git
+RUN export PATH="$PATH:`pwd`/flutter/bin"
+RUN chown -R $USER flutter/
+
+RUN dnf install   libXtst libXext libXrender freetype-devel   fontconfig-devel gtk2-devel libxslt PackageKit-gtk3-module -y
