@@ -24,8 +24,8 @@ def main(file: str, lang: str):
         model = Model(lang=lang)
     except Exception as ex:
         if str(ex) == ('lang %s does not exist', lang):
-            print(bcolors.FAIL + 'The language selected does not exists!')
-            print(bcolors.WARNING + "Please look at https://alphacephei.com/vosk/models for available language models.")
+            print(bcolors.FAIL + 'The language selected does not exists!' + bcolors.ENDC)
+            print(bcolors.WARNING + "Please look at https://alphacephei.com/vosk/models for available language models." + bcolors.ENDC)
         else:
             raise ex
     # Large vocabulary free form recognition
