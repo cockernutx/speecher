@@ -76,6 +76,7 @@ def main(file: str, lang: str):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    print("test")
     prs = argparse.ArgumentParser(description='Transform a wav file to a text file.')
     prs.add_argument('--lang', dest='lang', type=str, default='en-us', required=False,
                      help='The language of the audio file')

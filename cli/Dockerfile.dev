@@ -1,0 +1,20 @@
+FROM fedora:latest
+
+
+RUN dnf install git wget unzip cmake -y
+RUN dnf install python3 python3-pip -y
+
+#WORKDIR opt/
+#RUN git clone https://github.com/flutter/flutter.git
+#RUN export PATH="$PATH:`pwd`/flutter/bin"
+
+#RUN dnf install  gtk3-devel ninja-build clang mesa-dri-drivers  libXtst libXext libXrender freetype-devel   fontconfig-devel gtk2-devel libxslt PackageKit-gtk3-module -y
+
+WORKDIR /app
+COPY . .
+RUN ls
+RUN pip install -r requirements.txt
+
+CMD python3 -u speecher/speecher/main.py --lang en-us --file aa.wav
+
+
