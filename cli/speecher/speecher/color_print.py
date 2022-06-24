@@ -9,6 +9,6 @@ class Colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def color_print(string: str, color: Colors):
+def color_print(string: str, color: str):
     print(color + string + Colors.ENDC)
     pass
