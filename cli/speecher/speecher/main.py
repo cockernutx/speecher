@@ -5,6 +5,7 @@
 import argparse
 from progress.bar import Bar
 from vosk import Model, KaldiRecognizer
+from recognizer import Recognizer
 
 
 class bcolors:
@@ -19,7 +20,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
-def main(file: str, lang: str):
+
+'''def main(file: str, lang: str):
     try:
         model = Model(lang=lang)
     except Exception as ex:
@@ -61,7 +63,7 @@ def main(file: str, lang: str):
             pass
             #print(rec.PartialResult())
 
-    '''while iosize > 0:
+    while iosize > 0:
         if rec.AcceptWaveform(data):
             res = json.loads(rec.Result())
             if res['text'] != '':
@@ -69,9 +71,9 @@ def main(file: str, lang: str):
             result.append(res)
         data = wf.read(4000)
         iosize = iosize - 4000
-        bar.next(4000)'''
+        bar.next(4000)
     print('\n')
-    print(rec.FinalResult())
+    print(rec.FinalResult())'''
 
 
 # Press the green button in the gutter to run the script.
@@ -82,6 +84,11 @@ if __name__ == '__main__':
                      help='The language of the audio file')
     prs.add_argument('--file', dest='file', type=str, required=True, help='The audio file')
     args = prs.parse_args()
-    main(args.file, args.lang)
+
+
+    recognizer = Recognizer(args.lang)
+    recognizer.recognize(args.file)
+
+    #main(args.file, args.lang)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
