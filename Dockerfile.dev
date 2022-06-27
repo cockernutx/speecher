@@ -1,0 +1,33 @@
+FROM ubuntu:latest
+
+# Prerequisites
+RUN apt update && apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget clang cmake ninja-build pkg-config libgtk-3-dev
+
+WORKDIR /sdk/
+
+# Prepare Android directories and system variables
+RUN mkdir -p Android/sdk
+ENV ANDROID_SDK_ROOT /home/developer/Android/sdk
+RUN mkdir -p .android && touch .android/repositories.cfg
+
+# Set up Android SDK
+RUN wget -O sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN unzip sdk-tools.zip && rm sdk-tools.zip
+RUN mv tools Android/sdk/tools
+RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
+RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
+ENV PATH "$PATH:/sdk/Android/sdk/platform-tools"
+
+# Download Flutter SDK
+RUN git clone https://github.com/flutter/flutter.git
+ENV PATH "$PATH:/sdk/flutter/bin"
+
+# Run basic check to download Dark SDK
+RUN flutter doctor
+
+WORKDIR src/
+ADD . .
+RUN ls
+RUN flutter build linux
+RUN flutter devices
+CMD flutter run --observatory-port=33625
