@@ -1,0 +1,10 @@
+services:
+  app:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: .
+    enviroment:
+      - DISPLAY=:1
+    cap_add:
+      - SYS_PTRACE
+    network_mode: "host"
