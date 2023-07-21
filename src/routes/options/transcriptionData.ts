@@ -1,4 +1,4 @@
-export let languages = [
+export const languages = [
     'Afrikaans',
     'Albanian',
     'Amharic',
@@ -111,7 +111,7 @@ export let languages = [
     'Yiddish',
     'Yoruba'
 ];
-export let models = [
+export const models = [
     'tiny.en',
     'tiny',
     'base.en',

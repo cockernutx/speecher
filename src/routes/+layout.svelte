@@ -9,7 +9,7 @@
 </script>
 
 <div class="app">
-	{data.options.videoUrl}
+
 	<Header ></Header>
 	<br>
 	<slot></slot>

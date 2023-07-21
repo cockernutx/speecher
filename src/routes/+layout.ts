@@ -1,7 +1,9 @@
+import type {LayoutLoadEvent} from './$types';
+
 export const prerender = true
 export const ssr = false
 
-export async function load(event) {
+export async function load(event: LayoutLoadEvent) {
     return {
         options: {
             videoUrl: "",
